@@ -1,34 +1,37 @@
 // Copyright (c) 2020 [Your Name]. All rights reserved.
 
-#include <bayes/classifier.h>
-#include <bayes/image.h>
-#include <bayes/model.h>
 #include <gflags/gflags.h>
 
-#include <string>
+#include <hook_length/partitions.h>
 #include <cstdlib>
 #include <iostream>
+#include <string>
 
+DEFINE_uint32(n, 0, "n");
 
-// TODO(you): Change the code below for your project use case.
+using hook_length::Partitions;
+using hook_length::Partition;
 
-DEFINE_string(name, "Clarice", "Your first name");
-DEFINE_bool(happy, false, "Whether the greeting is a happy greeting");
-
+std::ostream& operator<<(std::ostream& os, const Partition& partition) {
+  for (const size_t part : partition) {
+    os << part;
+    os << ", ";
+  }
+  return os;
+}
 
 int main(int argc, char** argv) {
-  gflags::SetUsageMessage(
-      "Greets you with your name. Pass --helpshort for options.");
-
+  gflags::SetUsageMessage("Prints each partition of n");
   gflags::ParseCommandLineFlags(&argc, &argv, true);
 
-  if (FLAGS_name.empty()) {
-    std::cerr << "Please provide a name via the --name flag." << std::endl;
+  if (FLAGS_n <= 0) {
+    std::cerr << "Please provide a value of n" << std::endl;
     return EXIT_FAILURE;
   }
 
-  const std::string punctuation = FLAGS_happy ? "!" : ".";
-
-  std::cout << "Hello, " << FLAGS_name << punctuation << std::endl;
+  const Partitions partitions{FLAGS_n};
+  for (const Partition& partition : partitions) {
+    std::cout << partition << std::endl;
+  }
   return EXIT_SUCCESS;
 }
