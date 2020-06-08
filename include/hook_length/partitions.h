@@ -4,11 +4,11 @@
 #define HOOK_LENGTH_PARTITIONS_H_
 
 #include <iterator>
-#include <deque>
+#include <vector>
 
 
 namespace hook_length {
-typedef std::deque<size_t> Partition;
+typedef std::vector<size_t> Partition;
 
 // A class for iterating through partitions (reverse-lexicographically).
 class Partitions {
@@ -35,6 +35,9 @@ class Partitions {
 bool operator==(
     const Partitions::const_iterator& lhs,
     const Partitions::const_iterator& rhs);
+
+// Returns the product of the hook lengths
+size_t HookLengths(const Partition& partition);
 
 }  // namespace hook_length
 

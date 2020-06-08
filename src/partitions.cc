@@ -3,6 +3,9 @@
 #include <nlohmann/json.hpp>
 #include <hook_length/partitions.h>
 
+#include <algorithm>
+#include <vector>
+
 
 namespace hook_length {
 
@@ -58,6 +61,25 @@ bool operator==(
     const Partitions::const_iterator& lhs,
     const Partitions::const_iterator& rhs) {
   return !(lhs != rhs);
+}
+
+// Can be improved if partition is given in compressed form.
+size_t HookLengths(const Partition& partition) {
+  Partition parts{partition};
+  size_t result = 1;
+
+  while (!parts.empty()) {
+    const size_t height = parts.size();
+    for (size_t r = parts.size(); r > 0; --r) {
+      result *= (parts[r-1] + height-r);
+
+      if (--parts[r-1] == 0) {
+        parts.pop_back();
+      }
+    }
+  }
+
+  return result;
 }
 
 }  // namespace hook_length

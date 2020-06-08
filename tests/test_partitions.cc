@@ -50,3 +50,8 @@ TEST_CASE("Partitions match up", "[values]") {
   REQUIRE(it1 == partitions.end());
   REQUIRE(it2 == expected_partitions.end());
 }
+
+TEST_CASE("Hook lengths" "[product]") {
+  const hook_length::Partition partition = {5, 1};
+  REQUIRE(hook_length::HookLengths(partition) == 6*4*3*2*1*1);
+}
