@@ -1,4 +1,4 @@
-// Copyright (c) 2020 [Your Name]. All rights reserved.
+// Copyright (c) 2020 ICLUE @ UIUC. All rights reserved.
 
 #ifndef HOOK_LENGTH_PARTITIONS_H_
 #define HOOK_LENGTH_PARTITIONS_H_

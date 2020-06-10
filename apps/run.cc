@@ -1,4 +1,4 @@
-// Copyright (c) 2020 [Your Name]. All rights reserved.
+// Copyright (c) 2020 ICLUE @ UIUC. All rights reserved.
 
 #include <gflags/gflags.h>
 #include <hook_length/partitions.h>
